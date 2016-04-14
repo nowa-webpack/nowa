@@ -1,0 +1,36 @@
+{
+  "name": "nowa",
+  "version": "0.0.0",
+  "description": "nowa webpack solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nowa-webpack/nowa.git"
+  },
+  "keywords": [
+    "nowa",
+    "webpack",
+    "server",
+    "builder"
+  ],
+  "author": {
+    "name": "gbk",
+    "email": "ck0123456@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nowa-webpack/nowa/issues"
+  },
+  "homepage": "https://github.com/nowa-webpack/nowa#readme",
+  "dependencies": {
+    "chalk": "~1.1.3",
+    "commander": "~2.9.0",
+    "resolve": "~1.1.7"
+  },
+  "bin": {
+    "nowa": "./index.js"
+  }
+}

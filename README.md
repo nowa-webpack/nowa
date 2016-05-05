@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/nowa.svg?style=flat)](https://npmjs.org/package/nowa)
 
-Nowa webpack solution.
+nowa webpack solution
 
 ----
 

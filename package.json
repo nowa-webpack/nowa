@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nowa-webpack/nowa.git"
+    "url": "https://github.com/nowa-webpack/nowa.git"
   },
   "keywords": [
     "nowa",
@@ -16,10 +16,7 @@
     "server",
     "builder"
   ],
-  "author": {
-    "name": "gbk",
-    "email": "ck0123456@gmail.com"
-  },
+  "author": "gbk <ck0123456@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nowa-webpack/nowa/issues"
@@ -39,5 +36,9 @@
   },
   "bin": {
     "nowa": "./index.js"
+  },
+  "engines": {
+    "node": "^4.0.0",
+    "npm": "^3.0.0"
   }
 }

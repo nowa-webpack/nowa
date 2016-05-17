@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-05-01 18:27:31
+* @Last Modified time: 2016-05-17 11:44:33
 */
 
 'use strict';
@@ -53,7 +53,12 @@ if (pluginPath) { // plugin found
 
     // default options in abc.json
     var defauleOpts = loadDefaultOpts(path.join(process.cwd(), 'abc.json'));
-    plugin.action(function(opts) {
+    plugin.action(function(cmd, opts) {
+      if (cmd instanceof program.Command) {
+        opts = cmd;
+        cmd = '';
+      }
+      opts = opts || {};
 
       // abc.json options override
       for (var key in defauleOpts) {
@@ -63,7 +68,11 @@ if (pluginPath) { // plugin found
       }
 
       // run plugin action
-      pluginDef.action.call(this, opts);
+      if (cmd) {
+        pluginDef.action.call(this, cmd, opts);
+      } else {
+        pluginDef.action.call(this, opts);
+      }
     });
   }
 

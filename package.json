@@ -1,6 +1,6 @@
 {
   "name": "nowa",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "nowa webpack solution",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,8 @@
     "babel-preset-stage-0": "~6.5.0",
     "chalk": "~1.1.3",
     "commander": "~2.9.0",
+    "nowa-install": "~0.1.0",
+    "nowa-plugin": "~0.1.0",
     "resolve": "~1.1.7"
   },
   "bin": {

@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-05-17 11:44:33
+* @Last Modified time: 2016-05-18 13:04:26
 */
 
 'use strict';
@@ -76,7 +76,7 @@ if (pluginPath) { // plugin found
     });
   }
 
-} else { // plugin not found
+} else if (!command) { // plugin not found
 
   var pluginPool = {};
   moduleDirs.forEach(function(modulesDir) {

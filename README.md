@@ -10,16 +10,29 @@ nowa webpack solution
 
 - Generate a [webpack](https://github.com/webpack/webpack) based boilerplate.
 - Run a local server for web developer, support proxy and HMR.
-- Easy to use and customize [uxcore](http://uxco.re/) and [tingle](http://tinglejs.org/) UI components.
+- Easy to use and customize third-party UI components.
 - Support customized webpack.config.js.
+- Support `buildvars` to automatically output bundles with different varible combinations.
 
 Checkout [https://nowa-webpack.github.io/](https://nowa-webpack.github.io/) for more information.
 
 ## Install
 
+- Install nowa
+
 ```bash
 $ npm i nowa -g
 ```
+
+- Install all frequently-used nowa plugins ([build](https://github.com/nowa-webpack/nowa-build), [init](https://github.com/nowa-webpack/nowa-init), [lib](https://github.com/nowa-webpack/nowa-lib), [server](https://github.com/nowa-webpack/nowa-server))
+
+```bash
+$ nowa install
+```
+
+> You can install any plugin by `nowa install <name>`.
+
+> Find more plugins, visit [here](https://www.npmjs.com/search?q=nowa-).
 
 ## Usage
 
@@ -46,10 +59,4 @@ $ nowa build
 
 ```bash
 $ nowa lib
-```
-
-- Start a proxy server.
-
-```bash
-$ nowa proxy
 ```

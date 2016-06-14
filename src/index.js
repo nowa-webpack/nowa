@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-05-20 23:10:12
+* @Last Modified time: 2016-06-14 13:08:48
 */
 
 'use strict';
@@ -114,7 +114,7 @@ function findPluginPath(command) {
   if (command && /^\w+$/.test(command)) {
     try {
       return resolve.sync('nowa-' + command, {
-        moduleDirectory: moduleDirs
+        paths: moduleDirs
       });
     } catch (e) {
       console.log('');

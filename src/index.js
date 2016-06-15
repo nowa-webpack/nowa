@@ -2,20 +2,28 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-14 13:08:48
+* @Last Modified time: 2016-06-15 14:06:36
 */
 
 'use strict';
 
 var fs = require('fs');
 var path = require('path');
+
 var resolve = require('resolve');
 var program = require('commander');
 var chalk = require('chalk');
+var semver = require('semver');
 
 var pkg = require('../package.json');
 var argvs = process.argv;
 var command = argvs[2];
+
+if (!semver.satisfies(process.version, pkg.engines.node)) {
+  console.log(chalk.red.bold('Require nodejs version ' + pkg.engines.node + ', current ' + process.version));
+  console.log('Download the latest nodejs here ' + chalk.green('https://nodejs.org/en/download/'));
+  process.exit();
+}
 
 program
   .version(pkg.version)

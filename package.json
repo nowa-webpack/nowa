@@ -1,6 +1,6 @@
 {
   "name": "nowa",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "nowa webpack solution",
   "main": "index.js",
   "scripts": {

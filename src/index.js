@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-15 14:06:36
+* @Last Modified time: 2016-06-25 22:04:48
 */
 
 'use strict';
@@ -15,16 +15,19 @@ var program = require('commander');
 var chalk = require('chalk');
 var semver = require('semver');
 
+var updateNotifier = require('./update-notifier');
 var pkg = require('../package.json');
 var argvs = process.argv;
 var command = argvs[2];
 
+// check nodejs version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
   console.log(chalk.red.bold('Require nodejs version ' + pkg.engines.node + ', current ' + process.version));
   console.log('Download the latest nodejs here ' + chalk.green('https://nodejs.org/en/download/'));
   process.exit();
 }
 
+// program definiation
 program
   .version(pkg.version)
   .usage('<command> [options]');
@@ -40,6 +43,9 @@ program._moduleDirs = moduleDirs;
 var pluginPath = findPluginPath(command);
 
 if (pluginPath) { // plugin found
+
+  // check update of current command
+  updateNotifier(pkg.version, 'nowa-' + command);
 
   // regist current plugin
   var pluginDef = require(pluginPath);
@@ -84,16 +90,19 @@ if (pluginPath) { // plugin found
 
 } else if (!command) { // plugin not found
 
+  var plugins;
   var pluginPool = {};
-  moduleDirs.forEach(function(modulesDir) {
+  moduleDirs.forEach(function(modulesDir, index) {
 
-    // search and regist all the plugins
-    fs.readdirSync(modulesDir).filter(function(name) {
+    // search plugins
+    plugins = fs.readdirSync(modulesDir).filter(function(name) {
 
       // filter by name
       return /^nowa\-\w+$/.test(name);
+    });
 
-    }).forEach(function(name) {
+    // regist all the plugins
+    plugins.forEach(function(name) {
 
       // ensure local plugins not be overridden
       if (!pluginPool[name]) {
@@ -107,6 +116,9 @@ if (pluginPath) { // plugin found
       }
     });
   });
+
+  // check update of all plugins
+  updateNotifier.apply(null, [ pkg.version ].concat(plugins));
 }
 
 // parse command line arguments

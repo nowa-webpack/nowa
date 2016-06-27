@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-06-25 12:42:56
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-25 23:45:13
+* @Last Modified time: 2016-06-27 15:08:27
 */
 
 'use strict';
@@ -29,28 +29,31 @@ module.exports = function() {
   var isTipShow = false;
   var argvs = Array.prototype.slice.call(arguments, 0);
   argvs.slice(1).concat([ 'nowa' ]).forEach(function(plugin) {
-    var pkg = require(path.join(__dirname, '..', '..', plugin, 'package.json'));
-    if (versions[plugin] && semver.lt(pkg.version, versions[plugin])) {
-      if (plugin === 'nowa') {
+    try {
+      var pkg = require(path.join(__dirname, '..', '..', plugin, 'package.json'));
+      if (versions[plugin] && semver.lt(pkg.version, versions[plugin])) {
+        if (plugin === 'nowa') {
 
-        // do not show nowa update tip if any plugins need update
-        if (!isTipShow) {
+          // do not show nowa update tip if any plugins need update
+          if (!isTipShow) {
+            console.log(
+              chalk.yellow(
+                '\n  Update available: ' +
+                plugin + '@' + versions[plugin] + ' (Current: ' + pkg.version + ')' +
+                '\n  Run  `npm i nowa -g`  to update.')
+              );
+          }
+        } else {
           console.log(
             chalk.yellow(
               '\n  Update available: ' +
               plugin + '@' + versions[plugin] + ' (Current: ' + pkg.version + ')' +
-              '\n  Run  `npm i nowa -g`  to update.')
+              '\n  Run  `nowa install ' + plugin.substring(5) + '`  to update.')
             );
         }
-      } else {
-        console.log(
-          chalk.yellow(
-            '\n  Update available: ' +
-            plugin + '@' + versions[plugin] + ' (Current: ' + pkg.version + ')' +
-            '\n  Run  `nowa install ' + plugin.substring(5) + '`  to update.')
-          );
+        isTipShow = true;
       }
-      isTipShow = true;
+    } catch(e) {
     }
   });
 

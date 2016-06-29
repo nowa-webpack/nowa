@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-25 22:04:48
+* @Last Modified time: 2016-06-29 23:35:17
 */
 
 'use strict';
@@ -76,7 +76,9 @@ if (pluginPath) { // plugin found
 
       // abc.json options override
       for (var key in defauleOpts) {
-        opts[key] = defauleOpts[key];
+        if (!(key in opts)) {
+          opts[key] = defauleOpts[key];
+        }
       }
 
       // run plugin action

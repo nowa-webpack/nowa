@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-30 14:41:37
+* @Last Modified time: 2016-06-30 21:44:31
 */
 
 'use strict';
@@ -57,27 +57,31 @@ if (pluginPath) { // plugin found
 
   // set options
   if (pluginDef.options) {
+
+    // default options in abc.json
+    var defaultOpts = loadDefaultOpts(path.join(process.cwd(), 'abc.json'));
+    var optNameReg = /\-\-(\w+)/;
     pluginDef.options.forEach(function(optArgs) {
-      plugin.option.apply(plugin, optArgs);
+      if (optArgs) {
+        plugin.option.apply(plugin, optArgs);
+
+        // replace default value with options in abc.json
+        var matches = optNameReg.exec(optArgs[0]);
+        if (matches && matches[1] in defaultOpts) {
+          plugin[matches[1]] = defaultOpts[matches[1]]
+        }
+      }
     });
   }
 
   // set action
   if (pluginDef.action) {
-
-    // default options in abc.json
-    var defauleOpts = loadDefaultOpts(path.join(process.cwd(), 'abc.json'));
     plugin.action(function(cmd, opts) {
       if (cmd instanceof program.Command) {
         opts = cmd;
         cmd = '';
       }
       opts = opts || {};
-
-      // abc.json options override
-      for (var key in defauleOpts) {
-        opts[key] = defauleOpts[key];
-      }
 
       // run plugin action
       if (cmd) {

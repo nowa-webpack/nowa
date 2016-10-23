@@ -40,7 +40,7 @@ $ nowa install
 
 ```bash
 $ mkdir test && cd test
-$ nowa init
+$ nowa init uxcore
 ```
 
 - Start a local dev server.

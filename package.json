@@ -33,7 +33,7 @@
     "semver": "~5.1.0"
   },
   "bin": {
-    "nowa": "./index.js"
+    "nowa": "./bin/nowa"
   },
   "engines": {
     "node": ">=4.0.0",

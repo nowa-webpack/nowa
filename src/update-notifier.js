@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-06-25 12:42:56
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-27 15:08:27
+* @Last Modified time: 2017-03-16 12:03:07
 */
 
 'use strict';
@@ -16,6 +16,10 @@ var chalk = require('chalk');
 var semver = require('semver');
 
 module.exports = function() {
+  // do not show update tip inside nowa-gui
+  if (process.env.NOWA_GUI) {
+    return;
+  }
 
   // read latest versions
   var versionsFile = path.join(os.homedir(), '.nowa', 'latest-versions.json');

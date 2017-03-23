@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-04-11 16:43:10
 * @Last Modified by:   gbk
-* @Last Modified time: 2016-06-30 21:44:31
+* @Last Modified time: 2017-03-23 21:33:26
 */
 
 'use strict';
@@ -59,7 +59,7 @@ if (pluginPath) { // plugin found
   if (pluginDef.options) {
 
     // default options in abc.json
-    var defaultOpts = loadDefaultOpts(path.join(process.cwd(), 'abc.json'));
+    var defaultOpts = loadDefaultOpts(process.cwd(), 'abc.json');
     var optNameReg = /\-\-(\w+)/;
     pluginDef.options.forEach(function(optArgs) {
       if (optArgs) {
@@ -150,10 +150,14 @@ function findPluginPath(command) {
 }
 
 // load default options
-function loadDefaultOpts(configFile) {
+function loadDefaultOpts(startDir, configFile) {
   try {
-    return require(configFile).options;
+    return require(path.join(startDir, configFile)).options;
   } catch (e) {
-    return {};
+    var dir = path.dirname(startDir);
+    if (dir === startDir) {
+      return {};
+    }
+    return loadDefaultOpts(dir, configFile);
   }
 }

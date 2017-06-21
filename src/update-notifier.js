@@ -2,7 +2,7 @@
 * @Author: gbk
 * @Date:   2016-06-25 12:42:56
 * @Last Modified by:   gbk
-* @Last Modified time: 2017-03-16 12:03:07
+* @Last Modified time: 2017-06-21 20:53:33
 */
 
 'use strict';
@@ -19,6 +19,18 @@ module.exports = function() {
   // do not show update tip inside nowa-gui
   if (process.env.NOWA_GUI) {
     return;
+  }
+
+  // check for nowa-gui installation
+  try {
+    fs.statSync(path.join(os.homedir(), '.nowa-gui', 'user_config.json'))
+  } catch (e) {
+    console.log(
+      chalk.yellow(
+        '\n  Nowa GUI for all platform is available now!' +
+        '\n  You can download it here:' +
+        '\n  https://nowa-webpack.github.io/')
+      );
   }
 
   // read latest versions

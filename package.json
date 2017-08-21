@@ -1,0 +1,28 @@
+{
+  "name": "nowa",
+  "version": "2.0.0",
+  "description": "nowa bundle solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nowa-webpack/nowa.git"
+  },
+  "keywords": [
+    "nowa",
+    "webpack",
+    "bundle",
+    "bundler"
+  ],
+  "author": "Tommy Troy Lin <tommytroylin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nowa-webpack/nowa/issues"
+  },
+  "homepage": "https://github.com/nowa-webpack/nowa#readme",
+  "devDependencies": {
+    "lerna": "^2.0.0"
+  }
+}

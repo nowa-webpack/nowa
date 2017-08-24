@@ -1,6 +1,7 @@
-node_modules
-.vscode
-.idea
+node_modules/
+.vscode/
+.idea/
+dist/
 *.iml
 *.log
 npm-debug.log*

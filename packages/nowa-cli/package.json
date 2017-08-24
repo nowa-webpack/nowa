@@ -1,0 +1,19 @@
+{
+  "name": "nowa-cli",
+  "version": "2.0.0-alpha.0",
+  "description": "The nowa bundler command line",
+  "scripts": {},
+  "bin": {
+    "nowa": "./bin/nowa.js"
+  },
+  "author": {
+    "name": "Tommy Troy Lin",
+    "email": "tommytroylin@gmail.com",
+    "url": "https://github.com/tommytroylin"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {}
+}

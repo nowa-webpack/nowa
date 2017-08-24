@@ -3,5 +3,8 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "npmClientArgs": [
+    "---registry=https://registry.npm.taobao.org"
+  ]
 }

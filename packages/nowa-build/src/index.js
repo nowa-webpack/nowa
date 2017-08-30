@@ -16,8 +16,7 @@ export default class Build extends Component {
       .option('TODO2', {
         alias: 't2',
         describe: 'TODO2',
-      })
-    ;
+      });
   };
 
   run = async () => {
@@ -29,7 +28,9 @@ export default class Build extends Component {
         compiler.purgeInputFileSystem();
         lastHash = null;
         console.error(err.stack || err);
-        if (err.details) console.error(err.details);
+        if (err.details) {
+          console.error(err.details);
+        }
         process.exit(1);
       }
       if (stats.hash !== lastHash) {
@@ -40,5 +41,12 @@ export default class Build extends Component {
       }
     });
   };
+
+  addPlugin = (pluginInstance) => {};
+  removePlugin =(pluginConstructor) => {};
+  replacePlugin = (pluginInstance) => {};
+
+
+
 
 };

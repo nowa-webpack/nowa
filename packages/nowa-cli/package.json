@@ -2,7 +2,9 @@
   "name": "nowa-cli",
   "version": "2.0.0-alpha.0",
   "description": "The nowa bundler command line",
-  "scripts": {},
+  "scripts": {
+
+  },
   "bin": {
     "nowa": "./bin/nowa.js"
   },
@@ -15,5 +17,7 @@
   "dependencies": {
     "yargs": "^8.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+
+  }
 }

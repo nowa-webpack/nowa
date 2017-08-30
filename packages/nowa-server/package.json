@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "_nowa dev",
-    "build": "_nowa prod"
+    "build": "_nowa prod",
+    "lint": "_nowa lint"
   },
   "author": {
     "name": "Tommy Troy Lin",
@@ -20,6 +21,7 @@
     "nowa-core-bundler": "next"
   },
   "peerDependencies": {
+    "nowa-core": "next",
     "nowa-build": "next"
   }
 }

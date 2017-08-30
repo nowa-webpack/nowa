@@ -1,12 +1,12 @@
 {
   "name": "nowa-build",
   "version": "2.0.0-alpha.0",
-  "description": "The nowa build",
+  "description": "Nowa component build",
   "main": "./dist/index.js",
   "scripts": {
     "start": "_nowa dev",
     "build": "_nowa prod",
-    "nowa": "which _nowa"
+    "lint": "_nowa lint"
   },
   "author": {
     "name": "Tommy Troy Lin",

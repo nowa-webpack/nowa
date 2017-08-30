@@ -14,13 +14,8 @@ try {
   if (__filename !== localNowaCLI) {
     return require(localNowaCLI);
   }
-} catch (e) {
-}
+} catch (e) {}
 
 runCLI({ yargs }).catch(console.error);
 
-//
-//
-// yargs.help('h').alias('h', 'help');
-// console.log(yargs.argv);
 

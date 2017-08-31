@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "_nowa dev",
-    "build": "_nowa prod"
+    "build": "_nowa prod",
+    "lint": "_nowa lint"
   },
   "author": {
     "name": "Tommy Troy Lin",
@@ -14,7 +15,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pify": "^3.0.0"
+    "pify": "^3.0.0",
+    "source-map-support": "^0.4.16"
   },
   "devDependencies": {
     "nowa-core-bundler": "next"

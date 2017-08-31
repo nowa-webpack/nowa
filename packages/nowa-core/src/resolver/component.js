@@ -3,7 +3,7 @@ import { tryRequire, briefProjectNowaPackageNamesPromise } from './util';
 
 const resolveComponent = async packagePath => {
   const constructor = tryRequire(packagePath);
-  if (constructor && Object.getPrototypeOf(constructor) === Component) {
+  if (constructor && constructor.prototype instanceof Component) {
     return constructor;
   }
   return undefined;

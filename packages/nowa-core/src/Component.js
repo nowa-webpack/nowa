@@ -5,16 +5,12 @@ export class Component {
     yargs.usage('$0 <unknown>');
   };
 
-  constructor({ aliasConfig, config, configFunc }) {
-    this.aliasConfig = aliasConfig;
-    this.config = config;
-    this.configFunc = configFunc;
-  }
+  processConfig = async ({ overrideConfig, packageConfig }) => {
+    return packageConfig;
+  };
 
-  run = async () => {
-    console.log('a', this.aliasConfig);
-    console.log('c', this.config);
-    console.log('f', this.configFunc);
-    console.log('DEMO Component is running');
+  run = async ({ finalConfig }) => {
+    console.log('DEMO Component');
+    console.log('Final Config: ', finalConfig);
   };
 }

@@ -21,7 +21,7 @@ export const projectInfoPromise = (async () => {
   const result = {
     root,
     nodeModules: join(root, './node_modules'),
-    packageJSON: tryRequire(join(root, './package.json')),
+    packageJSON: tryRequire(join(root, './package.json')) || {},
   };
   global.__projroot = result.root;
   return result;
@@ -47,6 +47,16 @@ export const toCamelCase = name => {
     .join('')}`;
 };
 
+export const filterUndefined = (object = {}) => {
+  const result = {};
+  Object.entries(object).forEach(([k, v]) => {
+    if (v !== undefined) {
+      result[k] = v && typeof v === 'object' ? filterUndefined(v) : v;
+    }
+  });
+  return result;
+};
+
 export const briefProjectNowaPackageNamesPromise = (async () => {
   const { packageJSON, nodeModules } = await projectInfoPromise;
   const configs = [];
@@ -57,23 +67,27 @@ export const briefProjectNowaPackageNamesPromise = (async () => {
   const judgeByName = (name, from) => {
     const nameWithoutScope = name.match(getPackageNameRegExp)[2];
     if (nameWithoutScope.startsWith('nowa-config-')) {
-      configs.push({
-        packageName: name,
-        from,
-        configName: nameWithoutScope.slice(12),
-        path: join(nodeModules, name),
-      });
+      !configs.find(c => c.packageName === name) &&
+        configs.push({
+          packageName: name,
+          from,
+          configName: nameWithoutScope.slice(12),
+          path: join(nodeModules, name),
+          packageJSON: tryRequire(join(nodeModules, name, 'package.json')),
+        });
     } else if (
       nameWithoutScope.startsWith('nowa-') &&
       !nameWithoutScope.startsWith('nowa-core') &&
       !nameWithoutScope.startsWith('nowa-cli')
     ) {
-      packages.push({
-        packageName: name,
-        from,
-        componentName: nameWithoutScope.slice(5),
-        path: join(nodeModules, name),
-      });
+      !packages.find(p => p.packageName === name) &&
+        packages.push({
+          packageName: name,
+          from,
+          componentName: nameWithoutScope.slice(5),
+          path: join(nodeModules, name),
+          packageJSON: tryRequire(join(nodeModules, name, 'package.json')),
+        });
     }
   };
   Object.keys(devDependencies).forEach(name => judgeByName(name, 'devDependencies'));
@@ -95,7 +109,7 @@ export const briefProjectNowaPackageNamesPromise = (async () => {
     const packagesFromNodeModules = await resolveInNodeModules();
     packagesFromNodeModules.forEach(name => judgeByName(name, 'node_modules'));
   } catch (e) {
-    console.error(e);
+    // console.error(e);
   }
   return { configs, packages };
 })();

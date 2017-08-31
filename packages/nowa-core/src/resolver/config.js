@@ -10,10 +10,10 @@ const nowaConfigNames = [
 const resolveConfig = async (packagePath, componentName) => {
   const configPackage = tryRequire(packagePath);
   if (configPackage) {
-    const aliasConfig = get(configPackage, ['nowa', componentName]);
+    const alias = get(configPackage, ['nowa', componentName]);
     const config = configPackage[componentName] || configPackage[toCamelCase(componentName)];
-    const configFunc = configPackage[`${componentName}Func`] || configPackage[`${componentName}Function`];
-    return aliasConfig || config || configFunc ? { aliasConfig, config, configFunc } : undefined;
+    // const configFunc = configPackage[`${componentName}Func`] || configPackage[`${componentName}Function`];
+    return alias || config ? { alias, config } : undefined;
   }
   return undefined;
 };
@@ -22,9 +22,9 @@ export const resolveComponentConfigs = async componentName => {
   const { root } = await projectInfoPromise;
   const configsFromConfigFile = nowaConfigNames.map(name => ({
     path: resolve(root, name),
-    configName: 'default',
+    configName: '[override]',
     packageName: name,
-    from: `config file ${name}`,
+    from: `${name} [will be merged with next one]`,
   }));
   const { configs: configsFromPackages } = await briefProjectNowaPackageNamesPromise;
   const configPackages = configsFromConfigFile.concat(configsFromPackages);

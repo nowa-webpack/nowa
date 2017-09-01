@@ -28,7 +28,11 @@ export const projectInfoPromise = (async () => {
 })();
 
 export const globalInfoPromise = (async () => {
-  const nodeModules = await new Promise(resolve => npm.load(() => resolve(npm.globalDir)));
+  const nodeModules = await new Promise(resolve =>
+    npm.load({ progress: false }, () => {
+      resolve(npm.globalDir);
+    }),
+  );
   return {
     root: join(nodeModules, '../'),
     nodeModules,

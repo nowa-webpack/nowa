@@ -2,6 +2,7 @@ export { Component } from './Component';
 export * from './resolver/util';
 import { resolveProjectComponents, resolveComponentConfigs } from './resolver';
 import { install } from 'source-map-support';
+import 'babel-polyfill';
 
 install();
 

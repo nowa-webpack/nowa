@@ -1,18 +1,18 @@
 ## Config Alias
 ```js
-export const nowa = {
+exports.nowa = {
     build: {
-        define: {},
-        alias: {},
-        provide: {},
-        // entryPath: '',
+        define: {}, // 传递给 definePlugin
+        alias: {}, // 传递给 resolve.alias
+        provide: {}, // 传递给 providePlugin
+        // entryPath: '', // 类似于1.0的 pages， 暂不可用
         
         externals: {}, 
         entry: {},
         watch: false,
         watchOptions: {},
         output: {
-            Path: '',
+            path: '',
             filename: '',
             publicPath: '',
             jsonpFunction: '',

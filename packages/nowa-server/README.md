@@ -1,11 +1,11 @@
 ## Config Alias
 ```js
-export const nowa = {
+exports.nowa = {
     server: {
-        define: {},
-        alias: {},
-        provide: {},
-        // entryPath: '',
+        define: {}, // 传递给 definePlugin
+        alias: {}, // 传递给 resolve.alias
+        provide: {}, // 传递给 providePlugin
+        // entryPath: '', // 类似于1.0的 pages， 暂不可用
         
         entry: {},
         externals: {},
@@ -16,12 +16,13 @@ export const nowa = {
             jsonpFunction: '',
         },
         devServer: {
-            port: 9000,
+            port: 9000, // 端口号
             inline: false,
-            proxy: {},
+            proxy: {}, // proxy 配置
             contentBase: '',
             overlay: true,
         }    
     }
 };
 ```
+

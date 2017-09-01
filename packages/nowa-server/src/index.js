@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import { presetToOptions } from 'webpack/lib/Stats';
 import portfinder from 'portfinder';
 import WebpackDevServer from 'webpack-dev-server';
 import addDevServerEntrypoints from 'webpack-dev-server/lib/util/addDevServerEntrypoints';
@@ -99,6 +100,14 @@ export default class Server extends Build {
   };
 
   run = async ({ finalConfig, argv }) => {
+    finalConfig.stats = (() => {
+      const stats = finalConfig.stats || 'normal';
+      if (typeof stats === 'boolean' || typeof stats === 'string') {
+        return presetToOptions(stats);
+      }
+      return stats;
+    })();
+
     const options = finalConfig.devServer || {};
     if (!options.publicPath) {
       options.publicPath = (finalConfig.output && finalConfig.output.publicPath) || '';
@@ -116,7 +125,7 @@ export default class Server extends Build {
     }
 
     if (!options.stats) {
-      options.stats = {
+      options.stats = finalConfig.stats || {
         cached: false,
         cachedAssets: false,
       };

@@ -21,7 +21,7 @@ try {
   const { runCLI } = require('nowa-core');
   runCLI({ yargs }).catch(console.error);
 } catch (e) {
-  console.error(e);
+  console.error('Can not resolve nowa-core in this project folder.\n Try  `npm i nowa-core@next -D` to install it');
 }
 
 

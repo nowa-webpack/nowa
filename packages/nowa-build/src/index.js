@@ -91,11 +91,11 @@ export default class Build extends Component {
     const config = finalConfig;
     const compiler = webpack(config);
     const outputOptions = (() => {
-      const stats = config.stats;
+      const stats = config.stats || 'normal';
       if (typeof stats === 'boolean' || typeof stats === 'string') {
         return presetToOptions(stats);
       }
-      return stats || {};
+      return stats;
     })();
     let lastHash;
     const callback = (err, stats) => {

@@ -152,7 +152,7 @@ function findPluginPath(command) {
 // load default options
 function loadDefaultOpts(startDir, configFile) {
   try {
-    return require(path.join(startDir, configFile)).options;
+    return require(path.join(startDir, configFile)).options || {};
   } catch (e) {
     var dir = path.dirname(startDir);
     if (dir === startDir) {
